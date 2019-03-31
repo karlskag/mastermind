@@ -1,0 +1,22 @@
+.selectionCircle {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  display: inline-block;
+  transition: all .1s ease-in-out;
+}
+
+.selectionCircle:hover {
+  transform: scale(1.3);
+}
+
+.colorContainer {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.selectionPanelContainer {
+  text-align: left;
+  position: absolute;
+  bottom: 10%;
+}

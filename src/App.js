@@ -1,25 +1,34 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import GameStage from './GameStage';
+import ColorSelect from './ColorSelect';
+import * as core from './core';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = core.createState();
+    this.handleEvent = this.handleEvent.bind(this);
+  }
+
+  handleEvent({name, data}) {
+    const state = this.state;
+    if (name === 'colorChosen') {
+      this.setState(core.addColorToCurrentGuess(state, data));
+    } else if (name === 'restartChosen') {
+      this.setState(core.createState());
+    } else if (name === 'hiddenColorClick') {
+      this.setState(core.revealColor(state, data));
+    }
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <div className="GameContainer">
+          <GameStage state={this.state} triggerEvent={this.handleEvent}/>
+          <ColorSelect state={this.state} triggerEvent={this.handleEvent}/>
+        </div>
       </div>
     );
   }
