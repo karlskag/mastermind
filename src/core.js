@@ -6,7 +6,7 @@ export const colors = {
   black: '#1f222b',
   white: '#ffffff',
   yellow: '#fbbe19',
-  green: '#9ab19a'
+  green: '#7b9e83'
 };
 
 function shuffle(arr) {
